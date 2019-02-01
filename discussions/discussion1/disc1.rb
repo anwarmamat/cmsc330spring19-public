@@ -4,11 +4,7 @@ class Functions
 	#  and returns a new character array where each letter is increased by 1
 	# E.g. shift_letters(['a','b','c','y']) should return ['b','c','d','z']
 	def shift_letters(ch_arr) 
-		arr = []
-		for i in 0 .. (ch_arr.length - 1) do
-			arr << (ch_arr[i].ord + 1).chr
-		end
-		arr
+		# code here
 	end
 
 
@@ -18,14 +14,7 @@ class Functions
 	# E.g. add_to_inventory({"avocado"=>2, "apple"=>5}, {"avocado"=>10, "tide pod"=>2})
 	#  should return {"avocado"=>12, "apple"=>5, "tide pod"=>2}
 	def add_to_inventory(new_items, old_items)
-		for k,v in new_items do
-			if old_items[k] != nil then
-				old_items[k] += v
-			else
-				old_items[k] = v
-			end
-		end
-		old_items
+		# code here
 	end
 
 end
