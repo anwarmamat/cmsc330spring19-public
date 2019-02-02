@@ -6,7 +6,7 @@ class Functions
 	def shift_letters(ch_arr) 
 	    shifted = []
 
-	    for i in (0...ch_arr.length-1) do
+	    for i in (0...ch_arr.length) do
 	    	# you could have used .methods or Ruby docs online
 	    	# to find relevant array and character methods
 	        shifted << (ch_arr[i].ord + 1).chr
