@@ -276,6 +276,6 @@ Please **carefully read** the academic honesty section of the course syllabus. *
 
 <!-- TODO: Add actual cloning directions -->
 [cloning instructions]: ../git_cheatsheet.md
-[submit server]: submit.cs.umd.edu
+[submit server]: https://submit.cs.umd.edu/
 [web submit link]: image-resources/web_submit.jpg
 [web upload example]: image-resources/web_upload.jpg
