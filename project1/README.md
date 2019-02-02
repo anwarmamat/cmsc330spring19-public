@@ -69,58 +69,44 @@ In the simple format, there is one path per line. Each path consists of a name, 
 path path1 0 2 uurrddll
 ```
 
-The path <span style="font-family:Consolas; font-size:1.2em;">path1</span> starts at coordinates (0,2) and then proceeds up twice, right twice, down twice, and left twice, to reach its ending point (which happens to be the same as the starting point).
+The path path1 starts at coordinates (0,2) and then proceeds up twice, right twice, down twice, and left twice, to reach its ending point (which happens to be the same as the starting point).
 
-The maze.rb file we have given you will parse in the data in this format. The parser is invoked by the mode <span style="font-family:Consolas; font-size:1.2em;">print</span>, which prints its results so you can see how it has parsed the different parts of the maze. (You'll change the implementation of print before finishing the project, as described below.)
+The maze.rb file we have given you will parse in the data in this format. The parser is invoked by the mode `print`, which prints its results so you can see how it has parsed the different parts of the maze. (You'll change the implementation of `print` before finishing the project, as described below.)
 
 ## Part 1: Find Maze Properties
-The first thing your program will do, of course, is to read in the maze using the parser provided. You may assume all maze files in the simple format are valid. Your program will then compute various properties of the maze, according to the command (mode) it is given. Here are three simple properties you'll compute: 
-- the number of dead ends in the maze
-- the number of "meadows"
-- the number of horizontal and vertical walls.
+The first thing your program will do, of course, is to read in the maze using the parser provided. You may assume that maze files in the simple format, which we use in parts 1 through 5 of this project, are valid.
 
-First, if we invoke your script with the mode <span style="font-family:Consolas; font-size:1.2em;">deadends</span>, your script should output one line listing the number of cells for which exactly three directions are closed off. For example,
+Once the maze is read in, your program will compute various properties of the maze, according to the command (mode) it is given. Here are three simple properties you'll compute: the number of open cells in the maze, the number of "bridges", and the list of all cells sorted by their number of openings.
+
+First, if we invoke your script with the mode `open`, your script should output one line listing the number of cells for which all for directions are open. For example,
 ```
-% ruby runner.rb deadends maze1
-4
-```
-The four dead-ends are at the start, end, bottom-left corner, and just above the end. (See the pretty-printed version of maze1, below, for a visual depiction.)
-Second, if we invoke your script with the meadows mode, your script should output the number of open 2-by-2 locations in the maze. Meadows can overlap. For example,
-```
-% ruby runner.rb meadows maze1
+% ruby runner.rb open maze1
 2
 ```
-One meadow is in the very center, and the other meadow is just above it, overlapping the first.
-Finally, if we invoke your script with the <span style="font-family:Consolas; font-size:1.2em;">walls</span> mode, your script should output the number of walls in the maze, distinguishing vertical from horizontal walls. The perimeter walls should also be counted. For example,
+The two open cells are at the second row, second and thrid column. (See the pretty-printed version of maze1, below, for a visual depiction.)
+
+Second, if we invoke your script with the `bridge` mode, your script should output the number of vertically or horizonally open 1-by-3 locations in the maze. Bridges can overlap. For example,
+
 ```
-% ruby runner.rb walls maze1
-v: 13, h: 12
+% ruby runner.rb bridge maze1
+6
 ```
-The output indicates that there are 13 vertical walls and 12 horizontal walls.
+The bridges are:
 
-## Part 2: Pretty-print Maze
+second row, column 0,1,2; second row column 1,2,3; third row column 0,1,2; second column row 0,1,2; third column row 0,1,2; third column row 1,2,3.
 
-The textual specification of mazes makes them difficult to understand. For this part of the assignment, you'll implement a "pretty-printing" function for mazes. Your pretty print format will use the following conventions:
-
-Each cell will be represented by either a space, the letter "s" (for the start cell), or the letter "e" (for the end cell).
-- Left/right walls will be represented by a pipe character "|", up/down walls will be represented by a dash "-", and wall junctions will be represented with a plus "+".
-- Your program will print a maze in this format when executed with the "print" command.
-
-Here is an example maze that starts at (0,0) and ends at (3,3):
+Finally, if we invoke your script with the `sortcells` mode, your script should print the cells sorted by the number of openings. For example,
 ```
-% ruby runner.rb print maze1
-+-+-+-+-+
-|s|   | |
-+ + + +-+
-|       |
-+-+ + + +
-|     | |
-+ +-+ +-+
-| | |  e|
-+-+-+-+-+
+% ruby maze.rb sortcells maze1
+0,(1,3),(3,0)
+1,(0,0),(0,3),(3,2),(3,3)
+2,(0,1),(0,2),(1,0),(2,0),(2,3),(3,1)
+3,(1,2),(2,2)
+4,(1,1),(2,1)
 ```
+The output indicates that two cells (1,3) and (3,0) have no openings, four cells have one opening, etc. Cells with same number of openings are sorted by their column, then row.
 
-## Part 3: Process & Sort Paths By Cost
+## Part 2: Process & Sort Paths By Cost
 
 As described in the introduction, some maze files will contain paths. Only paths that travel between cells through openings are *valid*. For each valid path, you will need to use the weights for each opening in the maze to calculate the *cost* of the path. For example, if the coordinates (in a simple maze file)
 ```text
@@ -144,10 +130,58 @@ Any paths that are not valid should not be output. If a maze contains no valid p
 % ruby runner.rb paths maze1
 none
 ```
+## Part 3: Pretty-print Maze
+
+The textual specification of mazes makes them difficult to understand. For this part of the assignment, you'll implement a "pretty-printing" function for mazes. Your pretty print format will use the following conventions:
+
+- Each cell will be represented by either a space, the letter "s" (for the start cell), or the letter "e" (for the end cell).
+- Left/right walls will be represented by a pipe character "|", up/down walls will be represented by a dash "-", and wall junctions will be represented with a plus "+".
+- If the maze file contains paths, print asterics in the cells on the shortest (cost of path is smallest) path. If the shortest path includes the start cell or end cell, print capital letter "S" or "E" instead of "s" or "e".
+
+Your program will print a maze in this format when executed with the `print` command.
+
+Here is an example maze that starts at (0,0) and ends at (3,3):
+```
+% ruby runner.rb print maze1
++-+-+-+-+
+|s|   | |
++ + + +-+
+|       |
++-+ + + +
+|     | |
++ +-+ +-+
+| | |  e|
++-+-+-+-+
+
+ruby maze.rb print maze2
++-+-+-+-+
+|E|   | |
++ + + +-+
+|* *    |
++-+ + + +
+|* *  | |
++ +-+ +-+
+|S| |   |
++-+-+-+-+
+
+ruby maze.rb print maze3
++-+-+-+-+
+| |   | |
++ + + +-+
+|       |
++-+ + + +
+|* * *| |
++ +-+ +-+
+|S|e|* *|
++-+-+-+-+
+```
+In maze2, the shortest path includes the start and end cells. In maze3, the shortest path includes the start cell, but does not include the end cell.
+
 ## Part 4: Find Distance of Cells From Start
 
-Next, you need to analyze all the openings in a maze to determine the *distance* of all cells reachable from the start of the maze. For this project, we define distance between two cells x and y to be the number of up/down/left/right cell openings that are passed through when traveling from x to y. If there are multiple paths from x to y, the path with the lowest distance is the distance between x and y. The distance of the start cell from itself is always 0. If there is no valid path from x to y, there is no distance to y because it is unreachable.
-Once you have calculated the distance for all reachable cells, print out the result in order of increasing distance. On each line, first print out the distance d, then all cells reachable from the start cell for distance d. Cells should be printed as coordinates (x,y) in lexicographic order, separated by commas. Note that the first line will thus always be distance 0, followed by the location of the starting point of the maze.
+Next, you need to analyze all the openings in a maze to determine the *distance* of all cells reachable from the start of the maze. For this project, we define distance between two cells a and b to be the number of up/down/left/right cell openings that are passed through when traveling from a to b. If there are multiple paths from a to b, the path with the shortest distance is the distance between a and b. The distance of the start cell from itself is always 0. If there is no valid path from a to b (i.e. b is not reachable from a) then the distance from a to b is undefined.
+
+Once you have calculated the distance for all cells reachable from the start cell, print out the results in order of increasing distance. On each line, first print out the distance d, followed by all cells reachable from the start cell for that distance d. Cells should be printed as coordinates (x,y) in lexicographic order, separated by commas. Note that the first line will thus always be distance 0 followed by the location of the starting point of the maze.
 ```text
 % ruby runner.rb distance maze2
 0,(0,3)
@@ -169,22 +203,11 @@ true
 ```
 ## Part 6: Parse Standard Maze Files
 
-Standard maze files use a more complex file format, described below. If we invoke your script with the mode <span style="font-family:Consolas; font-size:1.2em;">parse</span>, your script needs to read in and parse a standard maze file using Ruby regular expressions, then output the maze in the simple maze file format.
-Some lines in a standard maze file may not be exactly in the format specified. If any such invalid lines exist, your script should output <span style="font-family:Consolas; font-size:1.2em;">invalid</span> maze followed by each invalid line in the maze file. The goal is primarily to find formatted input, not invalid mazes (e.g., ones in which one cell defines a wall while the other does not define the corresponding wall); you can assume we will always provide mazes that, if the input parses properly, yields a self-consistent maze.
+For this last part, we consider a new maze file format, called *standard maze files*, which is more complex. If we invoke your script with the mode `parse`, your script needs to read in and parse a standard maze file using Ruby regular expressions, then output the maze in the simple maze file format. If any part of the parsed in maze is invalid, then the output will be different; we discuss these situations further below.
 
-For example
-```
-% ruby runner.rb parse maze1-std
-...prints out maze1-std in simple maze format...
-```
-```
-% ruby runner.rb parse maze3-std
-invalid maze
-...prints out all invalid lines in maze3-std...
-```
-In addition, path names in standard maze files containing escaped quotes (e.g., \\"path1\\") must be converted to path names with normal quotes (e.g., "path1") in the standard maze file output.
+**Standard maze file format**
 
-Now we describe the standard maze file format in full detail. Standard maze files differ as follows from their simple counterparts. Here's an example:
+We begin by describing the standard maze file format in full detail. Here's an example:
 ```text
   size=16 start=(0,2) end=(13,11)
   0,0: du 123.456,0.123456
@@ -228,7 +251,9 @@ path:"path1",(0,2),l,r; path:"path2",(0,2),d,u,l;
 [     first path      ] [     second path      ] 
 ```
 Note that in these examples the last path ends in a semi-colon, but without a trailing space.
-If path names have escaped quotes in them, there is no requirement that they correspond to open and closed marks, i.e., you can have any number of escaped quotes in a path's name. In the example
+
+If path names have escaped quotes in them, there is no requirement that they correspond to open and closed marks, i.e., you can have any number of escaped quotes in a path's name. 
+In the example
 ```text
 path:"hello-\"world\"",(0,2),u,r,d; path:"goodbye-world",(0,2),d,r;
 ```
@@ -238,7 +263,44 @@ If any path names contain escaped quotes, they must be converted to normal quote
 
 In your output, all lines should be in the same order they were in the input file. For example, if path1 came first, and then path2, then make sure these come in the same order and same position in the output file.
 
-For examples of how standard maze files are parsed and used to generate simple maze files (or report errors), look at the files maze1-std.parse.out, maze2-std.parse.out, maze3-std.parse.out, and maze4-std.parse.out generated from maze1-std, maze2-std, maze3-std, and maze4-std.
+**Invalid standard mazes**
+
+Some lines in a standard maze file may be invalid, i.e., they may not be in the format described above. If any such invalid lines exist, your script should output invalid maze followed by each invalid line in the maze file.
+
+For examples:
+```text
+  % ruby maze.rb parse maze1-std
+  ...prints out maze1-std in simple maze format...
+  % ruby maze.rb parse maze3-std
+  invalid maze
+  ...prints out all invalid lines in maze3-std...
+```
+
+Furthermore, some lines in a standard maze file, while well formed, may make no logical sense. In particular, they may define cells within the maze that have openings that contradict neighboring cells within the maze or the outer walls of a maze (which should always be closed). If any such cells contradict with regard to their specified openings, your script should output invalid maze followed by the lines from the standard maze file corresponding to whichever cells contradict.
+
+For example:
+
+```text
+  size=16 start=(0,2) end=(13,11)
+  0,0: u 0.123456
+  0,1: uldr 43.3,5894.2341,20.0,5896.904
+  ...
+```
+
+The above two cells are correct in terms formatting but contradict in terms of the cell openings they specify. As such, both cell lines should be printed as invalid, i.e.,
+
+```text
+invalid maze
+  0,0: u 0.123456
+  0,1: uldr 43.3,5894.2341,20.0,5896.904
+  ...
+```
+
+A standard maze file may contain invalid lines due to formatting and/or cell opening agreement issues; however, there will not be a line that has both formatting and cell opening agreement issues. Any maze file containing an cell opening agreement issue will have a validly formatted header line describing the size, start and end of the maze.
+
+
+
+
 
 ## Hints and Tips
 - This project is non-trivial, in part because you will probably be writing in Ruby for the first time, so be sure to start right away, and come to office hours if you get stuck.
