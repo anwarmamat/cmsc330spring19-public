@@ -97,7 +97,7 @@ second row, column 0,1,2; second row column 1,2,3; third row column 0,1,2; secon
 
 Finally, if we invoke your script with the `sortcells` mode, your script should print the cells sorted by the number of openings. For example,
 ```
-% ruby maze.rb sortcells maze1
+% ruby runner.rb sortcells maze1
 0,(1,3),(3,0)
 1,(0,0),(0,3),(3,2),(3,3)
 2,(0,1),(0,2),(1,0),(2,0),(2,3),(3,1)
@@ -153,7 +153,7 @@ Here is an example maze that starts at (0,0) and ends at (3,3):
 | | |  e|
 +-+-+-+-+
 
-ruby maze.rb print maze2
+ruby runner.rb print maze2
 +-+-+-+-+
 |E|   | |
 + + + +-+
@@ -164,7 +164,7 @@ ruby maze.rb print maze2
 |S| |   |
 +-+-+-+-+
 
-ruby maze.rb print maze3
+ruby runner.rb print maze3
 +-+-+-+-+
 | |   | |
 + + + +-+
@@ -269,9 +269,9 @@ Some lines in a standard maze file may be invalid, i.e., they may not be in the 
 
 For examples:
 ```text
-  % ruby maze.rb parse maze1-std
+  % ruby runner.rb parse maze1-std
   ...prints out maze1-std in simple maze format...
-  % ruby maze.rb parse maze3-std
+  % ruby runner.rb parse maze3-std
   invalid maze
   ...prints out all invalid lines in maze3-std...
 ```
