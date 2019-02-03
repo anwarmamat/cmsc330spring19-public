@@ -80,7 +80,7 @@ Once the maze is read in, your program will compute various properties of the ma
 
 First, if we invoke your script with the mode `open`, your script should output one line listing the number of cells for which all for directions are open. For example,
 ```
-% ruby runner.rb open maze1
+% ruby runner.rb open inputs/maze1
 2
 ```
 The two open cells are at the second row, second and thrid column. (See the pretty-printed version of maze1, below, for a visual depiction.)
@@ -88,7 +88,7 @@ The two open cells are at the second row, second and thrid column. (See the pret
 Second, if we invoke your script with the `bridge` mode, your script should output the number of vertically or horizonally open 1-by-3 locations in the maze. Bridges can overlap. For example,
 
 ```
-% ruby runner.rb bridge maze1
+% ruby runner.rb bridge inputs/maze1
 6
 ```
 The bridges are:
@@ -97,7 +97,7 @@ second row, column 0,1,2; second row column 1,2,3; third row column 0,1,2; secon
 
 Finally, if we invoke your script with the `sortcells` mode, your script should print the cells sorted by the number of openings. For example,
 ```
-% ruby runner.rb sortcells maze1
+% ruby runner.rb sortcells inputs/maze1
 0,(1,3),(3,0)
 1,(0,0),(0,3),(3,2),(3,3)
 2,(0,1),(0,2),(1,0),(2,0),(2,3),(3,1)
@@ -121,13 +121,13 @@ the cost of the first move in the path will be 958.1 (the weight for the "d" ope
 
 Once you have found which paths are valid and calculated the cost of each valid path, you need to print out the cost and name of each valid path, in order of cost from lowest to highest. For each valid path print its cost (with exactly 4 decimal places) and name on a separate line, separated by a single space. Hint: you can use printf("%10.4f",x) to print out a float value to 4 decimal places.
 ```
-% ruby runner.rb paths maze2
+% ruby runner.rb paths inputs/maze2
    99.9958 path1
   103.7790 path2
 ```
 Any paths that are not valid should not be output. If a maze contains no valid paths (or no paths at all), your program should simply print none.
 ```
-% ruby runner.rb paths maze1
+% ruby runner.rb paths inputs/maze1
 none
 ```
 ## Part 3: Pretty-print Maze
@@ -142,7 +142,7 @@ Your program will print a maze in this format when executed with the `print` com
 
 Here is an example maze that starts at (0,0) and ends at (3,3):
 ```
-% ruby runner.rb print maze1
+% ruby runner.rb print inputs/maze1
 +-+-+-+-+
 |s|   | |
 + + + +-+
@@ -153,7 +153,7 @@ Here is an example maze that starts at (0,0) and ends at (3,3):
 | | |  e|
 +-+-+-+-+
 
-ruby runner.rb print maze2
+ruby runner.rb print inputs/maze2
 +-+-+-+-+
 |E|   | |
 + + + +-+
@@ -164,7 +164,7 @@ ruby runner.rb print maze2
 |S| |   |
 +-+-+-+-+
 
-ruby runner.rb print maze3
+ruby runner.rb print inputs/maze3
 +-+-+-+-+
 | |   | |
 + + + +-+
@@ -183,7 +183,7 @@ Next, you need to analyze all the openings in a maze to determine the *distance*
 
 Once you have calculated the distance for all cells reachable from the start cell, print out the results in order of increasing distance. On each line, first print out the distance d, followed by all cells reachable from the start cell for that distance d. Cells should be printed as coordinates (x,y) in lexicographic order, separated by commas. Note that the first line will thus always be distance 0 followed by the location of the starting point of the maze.
 ```text
-% ruby runner.rb distance maze2
+% ruby runner.rb distance inputs/maze2
 0,(0,3)
 1,(0,2)
 2,(1,2)
@@ -198,7 +198,7 @@ Now use your script to determine whether or not a maze can be solved. You can do
 
 You do *not* need to return a path representing a solution from start to finish. Your program will only need to indicate whether a path *exists* by printing "true" when a maze can be solved and "false" otherwise.
 ```
-% ruby runner.rb solve maze1
+% ruby runner.rb solve inputs/maze1
 true
 ```
 ## Part 6: Parse Standard Maze Files
@@ -269,9 +269,9 @@ Some lines in a standard maze file may be invalid, i.e., they may not be in the 
 
 For examples:
 ```text
-  % ruby runner.rb parse maze1-std
+  % ruby runner.rb parse inputs/maze1-std
   ...prints out maze1-std in simple maze format...
-  % ruby runner.rb parse maze3-std
+  % ruby runner.rb parse inputs/maze3-std
   invalid maze
   ...prints out all invalid lines in maze3-std...
 ```
