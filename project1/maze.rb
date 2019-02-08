@@ -39,6 +39,7 @@ end
 # This method pretty prints the maze. To do this, I will have 2 dummy
 # variables, xcount and ycount, which track the current cell being 
 # processed for printing. 
+#Test
 def prettyprint(file)
 
 
