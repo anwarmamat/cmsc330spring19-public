@@ -36,9 +36,14 @@ def read_and_print_simple_file(file)
 end
 #
 #
-#
-#
-#
+# This method pretty prints the maze. To do this, I will have 2 dummy
+# variables, xcount and ycount, which track the current cell being 
+# processed for printing. 
+def prettyprint(file)
+
+
+
+end
 #----------------------------------
 # Begin my functions
 
@@ -66,12 +71,105 @@ def openct(file)
       	end
     end
   end
-
-  puts "#{opencnt}"
+  puts opencnt
 end
 
+# sortcells prints the cells in the maze sorted by the number of openings.
+def sortcells(file)
+  
+  dir0 = "0,"
+  dir1 = "1,"
+  dir2 = "2,"
+  dir3 = "3,"
+  dir4 = "4,"
 
+  #ignore the header file
+  line = file.gets
+  if line == nil then return end
+  # read additional lines
+  while line = file.gets do
 
+    # begins with "path", must be path specification
+    if line[0...4] != "path"
+      x, y, ds, w = line.split(/\s/,4)
+      
+      # This checks the no. of directions open.
+      if ds =~/[uldr]{4}/
+      	dir4 = dir4 +"("+x+","+y+")"
+      elsif ds =~/[uldr]{3}/
+      	dir3 = dir3 +"("+x+","+y+")"
+      elsif ds =~/[uldr]{2}/
+      	dir2 = dir2 +"("+x+","+y+")"
+      elsif ds =~/[uldr]/
+      	dir1 = dir1 +"("+x+","+y+")"
+      else
+      	dir0 = dir0 +"("+x+","+y+")"
+      end
+    end
+  end
+  puts dir0
+  puts dir1
+  puts dir2
+  puts dir3
+  puts dir4
+end 
+
+# bridge calcuates the number of bridges present in the maze.
+# to do this, i will have two counters, wherein one calculates 
+# the number of adjacent vertical cells with openings, and one
+# which tracks the horizontal openings. The latter will have to
+# be an array, as the way the file is formatted forces us to do so.
+# since bridges can overlap, we simply reset the counter if there is no 
+# opening, and increment bridgect whenever we have an appropriate number on the counter.
+def bridge(file)
+  line = file.gets
+  if line == nil then return end
+
+  # read 1st line, must be maze header
+  sz, sx, sy, ex, ey = line.split(/\s/)
+
+  bridgect = 0
+  vertadjct = 0
+  sz = sz.to_i
+  horzary = Array.new(sz, 0)
+  colprev = 0;
+  while line = file.gets do
+
+    # begins with "path", must be path specification
+    if line[0...4] != "path"
+      x, y, ds, w = line.split(/\s/,4)
+      x =x.to_i
+      
+      if colprev != x
+      	colprev = x
+      	vertadjct = 0
+      end
+
+      if ds =~ /d/
+      	vertadjct += 1
+      else
+      	vertadjct = 0
+      end
+
+      if ds =~ /r/
+      	horzary[x] += 1
+      else
+      	horzary[x]=0
+      end
+
+      if vertadjct >= 2
+      	bridgect+=1
+      end
+
+      if horzary[x] >=2
+      	bridgect += 1
+      end
+
+    end
+
+  end
+  puts bridgect
+end
 
 #----------------------------------
 def main(command_name, file_name)
@@ -85,6 +183,10 @@ def main(command_name, file_name)
     read_and_print_simple_file(maze_file)
   when "open"
   	openct(maze_file)
+  when "sortcells"
+  	sortcells(maze_file)
+  when "bridge"
+  	bridge(maze_file)
   else
     fail "Invalid command"
   end
