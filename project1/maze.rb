@@ -191,6 +191,3 @@ def main(command_name, file_name)
     fail "Invalid command"
   end
 end
-
-
-

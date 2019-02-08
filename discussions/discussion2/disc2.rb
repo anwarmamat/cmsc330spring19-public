@@ -3,7 +3,7 @@
 # to each element in the array and print the result
 # Example: add_num([1,2,3], 2) would print 3//4//5
 def add_num(arr, num)
-	# Your code here
+	arr.each{|x| puts (x+num)}
 end
 
 
@@ -15,7 +15,11 @@ end
 # {7.15=>400, 8.25=>200, 2.15=>50, 1.45=>50}.
 # Return the total sales generated as a single float.
 def chipotle_sales(receipts)
-	# Your code here
+	total = 0.0
+	receipts.each do |k, v|
+		total = total + (v * k)
+	end
+	return total
 end
 
 
@@ -60,7 +64,9 @@ class Set
 	end
 
 	def each
-		# Your code here
+		@set.each do |x|
+			yield x
+		end
 	end
 end
 
@@ -70,7 +76,7 @@ end
 # Valid examples: “+1.0”, “+1”, “-124.124”, “1”, "-1"
 # Invalid examples: “1,000.0”, “1.1.1”
 def is_decimal(str)
-	# Your code here
+	return (str =~ /^[-+]{0,1}\d*[.]{0,1}\d*$/)
 end
 
 
@@ -97,5 +103,12 @@ end
 # extract_student_grades("Nom: Anwar Mamat, grade: 82.12%") ->
 #   :error
 def extract_student_grades(str)
-	# Your code here
+
+	#check if valid string
+	if str =~/^name: ([A-Z][a-z]* [A-Z][a-z]*), grade: (100\.00|\d{1,2}\.\d\d)%$/
+
+		{ :name => $1, :grade =>$2 }
+	else
+		:error
+	end
 end
