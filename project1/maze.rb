@@ -42,7 +42,87 @@ end
 #Test
 def prettyprint(file)
 
+  # read the header line. split it, then extract necessary variables.
+  line = file.gets
+  sz, sx, sy, ex, ey = line.split(/\s/)
+  
+  # setup necessary vars
+  sz = sz.to_i
+  sx = sx.to_i
+  sy = sy.to_i
+  ex = ex.to_i
+  ey = ey.to_i
+  cells = Array.new(sz)
+  for i in 0..(sz-1)
+    cells[i] = Array.new(sz, "")
+  end
 
+  #add start and end tags to these cells
+  cells[sx][sy] = cells[sx][sy] + "s"
+  cells[ex][ey] = cells[ex][ey] + "e"
+
+  while line = file.gets do
+
+    # begins with  path, path processing
+    if line[0...4] == "path"
+      p, name, x, y, ds = line.split(/\s/)
+      # TO IMPLEMENT LATER
+
+    # otherwise must be cell specification (since maze spec must be valid)
+    else
+      x, y, ds, w = line.split(/\s/,4)
+      
+      x = x.to_i
+      y = y.to_i
+      w = w.to_i
+
+      cells[x][y] = cells[x][y] + ds
+
+      end
+  end
+  # start printing
+
+  printf ("+")
+
+  for px in 0..(sz-1)
+    printf("-+")
+  end
+  printf ("\n")
+
+  for py in 0..(sz-1)
+    printf ("|")
+    for px in 0..(sz-1)
+
+      if cells[px][py] =~ /s/
+        printf ("s")
+      elsif cells[px][py] =~ /e/
+        printf ("e")
+      else
+        printf (" ")
+      end
+
+      if cells[px][py] =~ /r/
+        printf (" ")
+      else
+        printf ("|")
+      end
+
+    end
+    printf ("\n+")
+
+    for px in 0..(sz-1)
+
+      if cells[px][py] =~ /d/
+        printf (" ")
+      else
+        printf ("-")
+      end
+
+      printf("+")
+    end
+    printf ("\n")
+
+  end
 
 end
 #----------------------------------
@@ -180,7 +260,7 @@ def main(command_name, file_name)
   case command_name
   when "parse"
     parse(maze_file)
-  when "print"
+  when "parseprint"
     read_and_print_simple_file(maze_file)
   when "open"
   	openct(maze_file)
@@ -188,6 +268,8 @@ def main(command_name, file_name)
   	sortcells(maze_file)
   when "bridge"
   	bridge(maze_file)
+  when "print"
+    prettyprint(maze_file)
   else
     fail "Invalid command"
   end
