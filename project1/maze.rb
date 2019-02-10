@@ -65,7 +65,6 @@ def prettyprint(file)
 
     # begins with  path, path processing
     if line[0...4] == "path"
-      p, name, x, y, ds = line.split(/\s/)
       # TO IMPLEMENT LATER
 
     # otherwise must be cell specification (since maze spec must be valid)
@@ -122,8 +121,8 @@ def prettyprint(file)
       printf("+")
     end
     printf ("\n")
-
   end
+  printf("")
 
 end
 #----------------------------------
@@ -157,6 +156,8 @@ def openct(file)
 end
 
 # sortcells prints the cells in the maze sorted by the number of openings.
+# i'll have 5 strings each containing the coordinates of the cells with 
+# appropriate openings. Then, ill simply concatenate them as we scan the list.
 def sortcells(file)
   
   dir0 = "0,"
@@ -252,6 +253,34 @@ def bridge(file)
   end
   puts bridgect
 end
+
+# PART 2 
+# Path Processing
+
+# paths() will print all valid paths in ascending order based on
+# their weight. in the case that there are no valid paths, none will
+# simply be printed. 
+
+# to do this, i will process the paths, then store the weight and name
+# in a hash. Their weight will be the key, with the name being the value. 
+# Then, i will simply get the array of keys, sort them by weight, and then
+# iterate through the hash based on the sorted key array in order to output
+# them by weight. 
+
+# to process the paths, i will iterate through the file in order to get all the
+# cell data, then go through each path. to store the data 
+
+
+
+
+# PART 4 
+# Find Distance of Cells from the start.
+
+# distance() will print the cells in the maze based on the distance
+# they are from the start cell. The output format is similar to 
+# that of the sortcells output. 
+
+
 
 #----------------------------------
 def main(command_name, file_name)
