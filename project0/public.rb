@@ -44,6 +44,7 @@ class PublicTests < Minitest::Test
 		assert(ocaml_pkg_installed("ounit"), not_installed("OUnit pkg"))
 		assert(ocaml_pkg_installed("ocamlfind"), not_installed("OCamlFind pkg"))
 		assert(ocaml_pkg_installed("dune"), not_installed("dune pkg"))
+		assert(ocaml_pkg_installed("qcheck"), not_installed("qcheck pkg"))
 	end
 end
 
