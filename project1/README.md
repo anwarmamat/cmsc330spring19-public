@@ -220,7 +220,16 @@ A standard file contains several lines of text according to the following format
 size=<size> start=(<start_x>,<start_y>) end=(<end_x>,<end_y>)
 ```
 
-Notice that now the size, starting position, and ending position are specifically identified by keywords (size, start, and end, respectively). The spacing should be just as shown above: no spaces before or after the equals sign, and one space between keywords. All of the elements in <> should be nonnegative integers (and size should be at least 1). Lines missing any of the above formatting or having extra or missing spaces are invalid.
+Notice that now the size, starting position, and ending position are specifically identified by keywords (size, start, and end, respectively). The spacing should be just as shown above: no spaces before or after the equals sign, and one space between keywords. All of the elements in <> should be nonnegative integers, for example `+4` is not an integer whereas `4` is, (and size should be at least 1). Lines missing any of the above formatting or having extra or missing spaces are invalid. If the header is invalid, then the output should only include the header as invalid, and no other lines need to be checked. For example the header
+```text
+size=+4 start=(0,3) end=(0,0)
+```
+is invalid, and thus the output should be:
+```text
+invalid maze
+size=+4 start=(0,3) end=(0,0)
+```
+The start and end coordinates do not have to be logically valid (i.e., exist within the maze), but still must be formatted correctly.
 
 Lines representing *cells* take the form:
 
@@ -239,7 +248,16 @@ Here is the same specification in the standard format:
 4,7: lur 1.3,5.6,8.2
 ```
 
-It is acceptable for weights to be negative.
+It is acceptable for weights to be negative, as well as signed integers (i.e., `+1` and `-1` are both valid weights). The number of "open wall" characters must match the number of weights, and it cannot contain two of the same character. For example:
+```text
+4,7: lurl 1.3,5.6,8.2,5.5
+```
+and
+```text
+4,7: lur 1.3,5.6
+```
+are invalid.
+
 Lines representing *paths* take the form:
 
 ```text
@@ -259,9 +277,19 @@ path:"hello-\"world\"",(0,2),u,r,d; path:"goodbye-world",(0,2),d,r;
 ```
 The first path (named hello-"world") starts at (0,2), continuing to (0,1), (1,1), and (1,2). The second path (named goodbye-world) also starts at (0,2), but instead moves to (0,3) and (1,3).
 
-If any path names contain escaped quotes, they must be converted to normal quotes. For instance the names path\\"3\\" and \\"path4\\" should be converted to path"3" and "path4" in the simple maze file format output.
+If any path names contain escaped quotes, they must be converted to normal quotes. For instance the names path\\"3\\" and \\"path4\\" should be converted to path"3" and "path4" in the simple maze file format output. A path name can be empty (i.e., `""`)
 
 In your output, all lines should be in the same order they were in the input file. For example, if path1 came first, and then path2, then make sure these come in the same order and same position in the output file.
+
+Paths do not need to make any logical sense in the maze or have any directions. For example (in a maze of size 4):
+```text
+path:"",(0,3);
+```
+and
+```text
+path:"path",(0,5),u,u,u,u,u,u,u;
+```
+are valid paths. Put simply, you only need to check for proper formatting, not logical sense in the maze.
 
 **Invalid standard mazes**
 
@@ -296,9 +324,9 @@ invalid maze
   ...
 ```
 
-A standard maze file may contain invalid lines due to formatting and/or cell opening agreement issues; however, there will not be a line that has both formatting and cell opening agreement issues. Any maze file containing an cell opening agreement issue will have a validly formatted header line describing the size, start and end of the maze.
+A standard maze file may contain invalid lines due to formatting and/or cell opening agreement issues; however, there will not be a line that has both formatting and cell opening agreement issues. Any maze file containing a cell opening agreement issue will have a validly formatted header line describing the size, start and end of the maze.
 
-
+If a cell is not defined in the file or is not formatted correctly, this cell acts as a wildcard. This means the cell is undefined (neither open or closed), and is simply defined by its adjacent cells (i.e., the openings/walls of the neighbors define the cell).
 
 
 
