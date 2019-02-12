@@ -6,7 +6,7 @@ require "minitest/autorun"
 #
 
 VERSION = /(\d+(\.\d+){,2})/
-OCAML_VERSION = '4.07.0'
+OCAML_VERSION = '4.07'
 
 #
 # Required Packages
@@ -15,7 +15,7 @@ OCAML_VERSION = '4.07.0'
 class PublicTests < Minitest::Test
 	def test_public_ocaml
 		assert(ocaml_version, not_installed("OCaml"))
-		assert_equal(OCAML_VERSION, ocaml_version, wrong_version("OCaml"))
+		assert_equal(true, ocaml_version.include?(OCAML_VERSION), wrong_version("OCaml"))
 	end
 
 	def test_public_opam
