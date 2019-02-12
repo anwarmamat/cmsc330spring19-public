@@ -1,0 +1,2 @@
+For parse method, make sure to end reverse scan on parenthesis.
+add end method scan?
