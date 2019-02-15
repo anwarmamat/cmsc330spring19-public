@@ -1,10 +1,10 @@
 # Submit server .submit file for
 #  Course CMSC330
-#  Project P1: Maze
+#  Project P1-redo: Maze-redo
 
 courseName=CMSC330
 semester=201901
-projectNumber=P1
+projectNumber=P1-redo
 courseKey=90d6bb9eb0949a3b
 authentication.type=ldap
 baseURL=https://submit.cs.umd.edu:443/spring2019
