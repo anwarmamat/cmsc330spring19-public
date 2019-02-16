@@ -26,7 +26,7 @@ Implement the following functions that do not require knowledge of recursion.
 
 #### dup a b c
 - **Type**: `'a -> 'a -> 'a -> bool`
-- **Description**: Returns true if at least 2 of the outputs are duplicates.
+- **Description**: Returns true if at least 2 of the inputs are duplicates.
 - **Examples:**
 ```
 dup 3 4 5 = false
