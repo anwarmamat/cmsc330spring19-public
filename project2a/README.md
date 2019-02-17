@@ -7,8 +7,20 @@ Points: 30P/34R/36S
 ## Introduction
 The goal of this project is to get you familiar with programming in OCaml. You will have to write a number of small functions, each of which is specified in three sections below.
 
+**This project is due in one week!** We recommend you get started right away, going from top to bottom. The problems get increasingly more challenging, and in many cases later problems can take advantage of earlier solutions.
+
 ### Ground Rules
 In your code, you may **only** use library functions found in the [`Pervasives` module][pervasives doc]. This means you **cannot** use the List module or any other module. You may **not** use any imperative structures of OCaml such as references. The `@` operator is **not** allowed.
+
+### Project Files
+To begin this project, you will need to pull updates from the git repository. [Click here for directions on working with the Git repository.][git instructions] The following are the relevant files:
+
+- OCaml Files
+    - **src/basics.ml**: This is where you will write your code for all parts of the project.
+    - **src/basics.mli**: This file is used to describe the signature of all the functions in the module. Don't worry about this file, but make sure it exists or your code will not compile.
+- Submission Scripts and Other Files
+    - **submit.rb**: Execute this script to submit your project to the submit server.
+    - **submit.jar** and **.submit**: Don't worry about these files, but make sure you have them.
 
 ### Notes on OCaml
 OCaml is a lot different than languages you're likely used to working with, and we'd like to point out a few quirks here that may help you work your way out of common issues with the language.
