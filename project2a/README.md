@@ -118,7 +118,7 @@ is_even_sum [3; 3; 3] = false
 ```
 
 #### count_occ lst target
-- **Type**: `int list -> int -> int`
+- **Type**: `'a list -> 'a -> int`
 - **Description**: Returns the number of occurrences of `target` in `lst`
 - **Examples:**
 ```
