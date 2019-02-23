@@ -12,7 +12,7 @@ You should be able to complete Part 1 after the lecture on high-order functions 
 ### Ground Rules
 In your code, you may **only** use library functions found in the [`Pervasives` module][pervasives doc] and the functions provided in `funs.ml`. You **may** use the `@` operator. You **cannot** use the `List` module. You **may not** use any imperative structures of OCaml such as references.
 
-The secret tests are worth 0 points, but check that you did not use any features that were not allowed. You will **lose** points if you fail these tests. 
+We will check that you did not use any features that were not allowed. You will **lose** points if you fail these tests. 
 
 At a few points in this project, you will need to raise an `Invalid_argument` exception. Use the `invalid_arg` function to do so:
 ```
