@@ -1,0 +1,7 @@
+opam-version: "2.0"
+name: "parser"
+version: "1.0.0"
+build: [
+  ["make"]
+]
+descr: "test"

@@ -1,0 +1,4 @@
+(executable
+  (name interface)
+  (modes byte)
+  (libraries str parser p3))

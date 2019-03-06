@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/parser/META" {"META"}
+  "_build/install/default/lib/parser/dune-package" {"dune-package"}
+  "_build/install/default/lib/parser/opam" {"opam"}
+]
+doc: [
+  "_build/install/default/doc/parser/README.md"
+]

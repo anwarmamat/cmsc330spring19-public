@@ -1,0 +1,4 @@
+(tests
+  (names public)
+  (modes byte)
+  (libraries p3 parser oUnit))
