@@ -1,2 +1,3 @@
 #! /bin/sh
-OCAMLPATH=dep dune runtest -f
+. ./ocaml_version.sh
+dune runtest -f
