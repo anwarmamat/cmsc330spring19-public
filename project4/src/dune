@@ -1,0 +1,4 @@
+(library
+  (name p4)
+  (modules nfa regexp)
+  (libraries str sets))
