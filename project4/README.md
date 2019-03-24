@@ -55,7 +55,7 @@ Notice the types are parametric in state `'q` and symbol `'s`.
 
 The type `transition` represents NFA transitions. For example:
 ```
-let t1 = (0, Some c, 1) (* Transition from state 0 to state 1 on character 'c' *)
+let t1 = (0, Some 'c', 1) (* Transition from state 0 to state 1 on character 'c' *)
 let t2 = (1, None, 0)   (* Transition from state 1 to state 0 on epsilon *)
 ```
 
@@ -172,7 +172,7 @@ new_states dfa_ex [0; 1] = [[1]; [0]; [2]]
 * **Description:** Given an NFA and a list of states from that NFA (a single state in the DFA) computes all the transitions coming from `qs` (including the dead state) in the DFA.
 * **Examples:**
 ```
-new_trans dfa_ex [0; 1] = [([0; 1], Some 'a', 1); ([0; 1], Some 'b', 0); ([0; 1], Some 'c', [2])]
+new_trans dfa_ex [0; 1] = [([0; 1], Some 'a', [1]); ([0; 1], Some 'b', [0]); ([0; 1], Some 'c', [2])]
 ```
 
 **new_finals nfa qs**
