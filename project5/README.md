@@ -108,7 +108,7 @@ The remaining tokens are not determined by a single match, but rather via a regu
     - "ifelsewhile"
     - "dowhileifelse2"
 
-We have provided a fair bit of code to get your started, in `lexer.skeleton.ml` -- your implementation should go in `lexer.ml`. The scanning process is readily handled via regular expressions, using OCaml's regular expressions library [`Str` module documentation][str doc]. 
+We have provided a fair bit of code to get your started, in `lexer.ml` -- your implementation should go in `lexer.ml`. The scanning process is readily handled via regular expressions, using OCaml's regular expressions library [`Str` module documentation][str doc]. 
 
 A couple of things to note:
 - The lexer emits the `EOF` token at the end of the input, meaning that the shortest possible output from the lexer is `[EOF]`.
