@@ -1,0 +1,4 @@
+(library
+  (name p5)
+  (modules lexer smallCTypes utils parser tokenTypes)
+  (libraries str))
