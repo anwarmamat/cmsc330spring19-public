@@ -124,7 +124,7 @@ Your lexing code will feed the tokens into your parser, so a broken lexer will r
 ## The Parser
 Once the program has been transformed from a string of raw characters into more manageable tokens, you're ready to parse. The parser must be implemented in `parser.ml` in accordance with the signatures for `parse_expr`, `parse_stmt` and `parse_main` found in `parser.mli`. `parser.ml` is the only file you will write code in. The functions should be left in the order they are provided, as a good implementation will rely heavily on earlier functions.
 
-We provide an **ambiguous** CFG below for the language that must be converted so that it's right-recursive and right-associative. That way it can be parsed by a recursive descent parser. (By right associative, we are referring to binary infix operators—so something like `1 + 2 + 3` will parse as `Add(Int_Type(1), Add(Int_Type(2), Int_Type(3)))`, essentially implying parentheses in the form `(1 + (2 + 3))`.) As convention, in the given CFG all non-terminals are capitalized, all syntax literals (terminals) are formatted `as non-italicized code` and will come in to the parser as tokens from your lexer. Variant token types (i.e. `Tok_Bool`, `Tok_Int`, and `Tok_ID`) will be printed *`as italicized code`*.
+We provide an **ambiguous** CFG below for the language that must be converted so that it's right-recursive and right-associative. That way it can be parsed by a recursive descent parser. (By right associative, we are referring to binary infix operators—so something like `1 + 2 + 3` will parse as `Add(Int(1), Add(Int(2), Int(3)))`, essentially implying parentheses in the form `(1 + (2 + 3))`.) As convention, in the given CFG all non-terminals are capitalized, all syntax literals (terminals) are formatted `as non-italicized code` and will come in to the parser as tokens from your lexer. Variant token types (i.e. `Tok_Bool`, `Tok_Int`, and `Tok_ID`) will be printed *`as italicized code`*.
 
 ### `parse_expr`
 Expressions are a self-contained subset of the SmallC grammar. As such, implementing them first will allow us to build the rest of the language on top of them later. Recall the `expr` type from project 3 (in [`smallCTypes.ml`][smallC Types]):
@@ -180,11 +180,11 @@ As an example, see how the parser will break down an input mixing a few differen
 ```
 Add(
   Mult(
-    Int_Type(2),
+    Int(2),
     Pow(
-      Int_Type(3),
-      Int_Type(5))),
-  Int_Type(4))
+      Int(3),
+      Int(5))),
+  Int(4))
 ```
 
 ### `parse_stmt`
