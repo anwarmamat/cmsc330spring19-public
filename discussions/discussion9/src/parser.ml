@@ -30,13 +30,13 @@ let rec parser (toks : token list) : expr =
   failwith "unimplemented"
 
 (* Parses the S rule. *)
-and parse_S (toks : token list) : expr =
+and parse_S (toks : token list) : (token list * expr) =
   failwith "unimplemented"
 
 (* Parses the M rule. *)
-and parse_M (toks : token list) : expr =
+and parse_M (toks : token list) : (token list * expr) =
   failwith "unimplemented"
             
 (* Parses the N rule. *)
-and parse_N (toks : token list) : expr =
+and parse_N (toks : token list) : (token list * expr) =
   failwith "unimplemented"
