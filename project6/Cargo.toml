@@ -1,0 +1,7 @@
+[package]
+name = "p6"
+version = "0.1.0"
+authors = ["dcumming"]
+edition = "2018"
+
+[dependencies]
