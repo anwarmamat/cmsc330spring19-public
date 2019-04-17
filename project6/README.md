@@ -14,6 +14,8 @@ For this project you are allowed to use the library functions found in `std`, in
 
 However, you may **NOT** use `collections::BinaryHeap` for your implementation.  You must create your own.
 
+Also, you may not use any external crates for your implementation.
+
 Introduction
 ------------
 Tony Stark, a genius and master engineer who received his education at MIT, is best known under the alias Iron Man.  Stark built the Iron Man suit for his protection and went on to run his father's company, where he continues to improve his super suit.
@@ -231,8 +233,6 @@ For the boolean value in Power, Missiles, and Shield, a true value corresponds t
 
 Lastly, you will write a function **to_command** that takes a string slice and converts it to a command.  Below is a chart outlining how the strings will be passed into this method.  You can assume that any string that does not match the regular expressions provided will be considered an Invalid command.
 
-You are welcome to solve this problem with regular expressions from `regex::Regex`, but are not required to.
-
 ```
     Command     |     String format
     ---------------------------------------------
@@ -255,7 +255,6 @@ Below we've listed some helpful links to functions you may want to consider usin
 * [str][str]
 * [iterators][iterators]: some notable functions being collect, enumerate, zip 
 * [options][options]
-* [regex][regex]
 
 Project Submission
 ------------------
@@ -281,6 +280,5 @@ Please **carefully read** the academic honesty section of the course syllabus. *
 [str]: https://doc.rust-lang.org/std/primitive.str.html
 [iterators]: https://doc.rust-lang.org/std/iter/trait.Iterator.html
 [options]: https://doc.rust-lang.org/std/option/enum.Option.html
-[regex]: https://docs.rs/regex/1.1.5/regex/
 [web upload example]: image-resources/web_upload.jpg
 [submit server]: https://submit.cs.umd.edu/
