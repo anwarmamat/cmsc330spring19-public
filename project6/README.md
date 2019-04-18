@@ -145,11 +145,11 @@ All the functions in this part belong to the `PriorityQueue` trait.  Traits are 
 
 * `fn enqueue(&mut self, ele: T) -> ()`
 
-The first function you will write is the **enqueue** method.  This method inserts an element into the heap.  For insertion, the first step is to find the first available spot in the array, placing the new element at the end of the array.  Then you must re-shape the structure so that it maintains the heap property of all children being smaller than the parent.  Keep swapping the newly added element with its parent until the constraint is satisfied.  There is no return value for this method.
+The first function you will write is the **enqueue** method.  This method inserts an element into the heap.  For insertion, the first step is to find the first available spot in the array, placing the new element at the end of the array.  Then you must re-shape the structure so that it maintains the heap property of all children being larger than the parent.  Keep swapping the newly added element with its parent until the constraint is satisfied.  There is no return value for this method.
 
 * `fn dequeue(&mut self) -> Option<T>`
 
-The second function you will write is the **dequeue** method.  This method removes and returns the root element (or first element of array) from the heap.  Once we remove the root element, we must replace it with the last element in the array and again re-shape the structure so that it maintains the heap property of all children being smaller than the parent.  Keep swapping the parent element with its smallest child until the constraint is satisfied.  The return element should be returned in the form of an option.  Return `Some(T)` if the heap is not empty.  Otherwise return `None` if the heap is empty.
+The second function you will write is the **dequeue** method.  This method removes and returns the root element (or first element of array) from the heap.  Once we remove the root element, we must replace it with the last element in the array and again re-shape the structure so that it maintains the heap property of all children being larger than the parent.  Keep swapping the parent element with its smallest child until the constraint is satisfied.  The return element should be returned in the form of an option.  Return `Some(T)` if the heap is not empty.  Otherwise return `None` if the heap is empty.
 
 * `fn peek(&self) -> Option<&T>`
 
