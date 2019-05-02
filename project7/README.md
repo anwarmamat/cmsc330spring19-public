@@ -1,6 +1,10 @@
 # Project 7: Introduction to Cybersecurity
-Due: May 13 (Late May 14) at 11:59:59 PM
-Points: 20P/80R/0S
+
+CMSC 330, Spring 2019
+
+Due May 13th at 11:59pm (Late: May 14st at 11:59pm)
+
+P/SP/R/S: 28/72/0/0
 
 ## Important Note
 The public tests for this project check for correctness of the website. You should be passing all the public tests from the beginning. As you work on the project you might break something that cause the public tests to fail. Your public tests must **all** pass in your final submission to get credit for this project. If any public tests fails, you will recieve a zero for the project.
