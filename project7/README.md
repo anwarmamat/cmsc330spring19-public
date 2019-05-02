@@ -6,6 +6,8 @@ Due May 13th at 11:59pm (Late: May 14st at 11:59pm)
 
 P/SP/R/S: 28/72/0/0
 
+Note: SP stands for Semipublic. Those are tests that are public on the submit server, but we don't distribute the actual tests.
+
 ## Important Note
 The public tests for this project check for correctness of the website. You should be passing all the public tests from the beginning. As you work on the project you might break something that cause the public tests to fail. Your public tests must **all** pass in your final submission to get credit for this project. If any public tests fails, you will recieve a zero for the project.
 
