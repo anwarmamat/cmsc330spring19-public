@@ -12,7 +12,7 @@
         <img class="box-avatar" src="/avatars/<%= post[:avatar] %>" />
         <div class="box-body">
           <a href="/user?q=<%= post[:user] %>"><%= post[:user] %></a> ◇ <%= post[:date] %>
-          <p> <%= epsilon[:content] %> </p>
+          <p> <%= post[:content] %> </p>
         </div>
       </div>
     <% end %>
