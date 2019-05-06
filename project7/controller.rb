@@ -221,7 +221,7 @@ module Posts
 		ORDER BY Posts.ID DESC
 		}
 		@db.execute(query) do |pos|
-			date_str = Time.at(pos[3]).strftime(DATE_FMT)
+			date_str = Time.at(pos[3].to_i).strftime(DATE_FMT)
 			posts << {
 				:user => pos[0],
 				:avatar => pos[1],
